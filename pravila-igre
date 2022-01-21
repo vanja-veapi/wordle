@@ -1,0 +1,5 @@
+// index kockicka u prvom redu je od 0 do 4
+// Kad kazemo sledeci row counter, uzimamo vrednost poslednje kockice i dodajemo joj + 1
+
+//1. Provera da li je slovo na ispravnom mestu
+//2. Provera da li slovo postoji u reci

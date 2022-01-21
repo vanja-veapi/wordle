@@ -1,0 +1,79 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+:root {
+	--bg-green: rgb(56, 165, 56);
+	--bg-gray: rgb(134, 134, 134);
+	--bg-yellow: #ffc107;
+}
+body {
+	font-family: "Roboto", "Arial";
+}
+.game-container {
+	max-width: 500px;
+	min-height: 90vh;
+	margin: 0 auto;
+}
+header {
+	border-bottom: 2px solid rgba(206, 206, 206, 0.5);
+	margin-top: 20px;
+}
+header h1,
+.current-word {
+	text-align: center;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+.current-word {
+	max-width: 150px;
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 20px;
+	margin: 10% auto;
+}
+.current-word h2 {
+	background-color: #000;
+	min-height: 30px;
+}
+.board {
+	margin-top: 20%;
+	max-width: 350px;
+	min-height: 420px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-rows: repeat(6, 1fr);
+	grid-gap: 5px;
+	padding: 10px;
+}
+.tile {
+	max-width: 62px;
+	min-height: 62px;
+	border: 2px solid rgba(128, 128, 128, 0.5);
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+	line-height: 2rem;
+	font-weight: bold;
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+.row {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 5px;
+}
+.bg-green {
+	background-color: var(--bg-green);
+	color: white;
+}
+.bg-gray {
+	background-color: var(--bg-gray);
+	color: white;
+}
+.bg-yellow {
+	background-color: var(--bg-yellow);
+	color: white;
+}
