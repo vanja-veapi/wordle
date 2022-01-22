@@ -1,5 +1,5 @@
 window.addEventListener("load", function () {
-    fetch("/data/dictionary.txt").then(res => res.text()).then(data => startGame(data));
+    fetch("data/dictionary.txt").then(res => res.text()).then(data => startGame(data));
 });
 function showEndGame(win, currentWord) {
     this.document.querySelector("#current-word").innerText = currentWord;
@@ -100,8 +100,4 @@ function showFiveWords(dictionary) {
     let allText = dictionary.split("\r\n");
     const fiveWords = allText.filter(words => words.length === 5); //Prikazujem samo reci od 5 slova
     return fiveWords;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 432926d07299bea8607c817b1cb41a7f1db1184e
