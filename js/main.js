@@ -1,5 +1,5 @@
 window.addEventListener("load", function () {
-    fetch("../data/dictionary.txt").then(res => res.text()).then(data => startGame(data));
+    fetch("https://vanja-veapi.github.io/wordle/data/dictionary.txt").then(res => res.text()).then(data => startGame(data));
     // startGame();
 });
 function showEndGame(win, currentWord) {
