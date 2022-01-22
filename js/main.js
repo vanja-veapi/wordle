@@ -1,5 +1,5 @@
 window.addEventListener("load", function () {
-    fetch("../data/dictionary.txt").then(res => res.text()).then(data => startGame(data));
+    fetch("/data/dictionary.txt").then(res => res.text()).then(data => startGame(data));
 });
 function showEndGame(win, currentWord) {
     this.document.querySelector("#current-word").innerText = currentWord;
