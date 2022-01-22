@@ -100,4 +100,8 @@ function showFiveWords(dictionary) {
     let allText = dictionary.split("\r\n");
     const fiveWords = allText.filter(words => words.length === 5); //Prikazujem samo reci od 5 slova
     return fiveWords;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 432926d07299bea8607c817b1cb41a7f1db1184e
