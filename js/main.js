@@ -1,6 +1,5 @@
 window.addEventListener("load", function () {
     fetch("../data/dictionary.txt").then(res => res.text()).then(data => startGame(data));
-    // startGame();
 });
 function showEndGame(win, currentWord) {
     this.document.querySelector("#current-word").innerText = currentWord;
@@ -31,9 +30,7 @@ function startGame(data) {
     let isGameEnded = false;
 
     this.window.addEventListener("keydown", function (e) {
-        //Zameniti sa regexom (Pogledati regex generator....)
         if (e.keyCode >= 65 && e.keyCode <= 90 || e.key.match(/[ŠšĐđŽžČčĆć]/u)) {
-            // if () {
             const key = e.key;
 
             if (tileIndex <= 4) {
@@ -104,15 +101,3 @@ function showFiveWords(dictionary) {
     const fiveWords = allText.filter(words => words.length === 5); //Prikazujem samo reci od 5 slova
     return fiveWords;
 }
-/**
- * let mixedCharacters = "aεЛ";
-
-// Using the canonical "long" name of the script
-mixedCharacters.match(/\p{Script=Latin}/u); // a
-
-// Using a short alias for the script
-mixedCharacters.match(/\p{Script=Greek}/u); // ε
-
-// Using the short name Sc for the Script property
-mixedCharacters.match(/\p{Sc=Cyrillic}/u); // Л 
- */
