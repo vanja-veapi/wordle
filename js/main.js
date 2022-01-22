@@ -97,7 +97,7 @@ function readTextFile(file) {
     fetch(file).then(res => res.text()).then(data => showFiveWords(data));
 }
 function showFiveWords(dictionary) {
-    let allText = dictionary.split("\r\n");
-    const fiveWords = allText.filter(words => words.length === 5); //Prikazujem samo reci od 5 slova
-    return fiveWords;
+    return dictionary.split("\r\n");
+    // const fiveWords = allText.filter(words => words.length === 5); //Prikazujem samo reci od 5 slova
+    // return fiveWords;
 }
