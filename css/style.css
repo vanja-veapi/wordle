@@ -47,6 +47,11 @@ header h1,
 	grid-gap: 5px;
 	padding: 10px;
 }
+.row {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 5px;
+}
 .tile {
 	max-width: 62px;
 	min-height: 62px;
@@ -60,11 +65,6 @@ header h1,
 	vertical-align: middle;
 	text-transform: uppercase;
 }
-.row {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-gap: 5px;
-}
 .bg-green {
 	background-color: var(--bg-green);
 	color: white;
@@ -76,4 +76,30 @@ header h1,
 .bg-yellow {
 	background-color: var(--bg-yellow);
 	color: white;
+}
+.wiggle {
+	transition: 0.5s;
+	animation-name: wiggle;
+	animation-duration: 1s;
+	transform-origin: center;
+}
+@keyframes wiggle {
+	0% {
+		transform: rotate(0deg) translateX(0);
+	}
+	25% {
+		transform: rotate(15deg) translateX(10px);
+	}
+	50% {
+		transform: rotate(-15deg) translateX(-10px);
+	}
+	65% {
+		transform: rotate(15deg) translateX(10px);
+	}
+	80% {
+		transform: rotate(-15deg) translateX(-10px);
+	}
+	100% {
+		transform: rotate(0deg) translateX(0);
+	}
 }

@@ -1,5 +1,6 @@
 window.addEventListener("load", function () {
-    startGame();
+    fetch("../data/dictionary.txt").then(res => res.text()).then(data => startGame(data));
+    // startGame();
 });
 function showEndGame(win, currentWord) {
     this.document.querySelector("#current-word").innerText = currentWord;
@@ -15,18 +16,24 @@ function getWord(row) {
 
     return word
 }
-function startGame() {
+function startGame(data) {
+    const dictionary = showFiveWords(data);
+    const randomIndex = Math.floor(Math.random() * dictionary.length);
+
     const rows = this.document.querySelectorAll(".row");
-    const currentWord = "Dokaz";
-    // const tiles = this.document.querySelectorAll(".tile");
+
+    const currentWord = dictionary[randomIndex];
+    console.log(currentWord);
 
     let rowIndex = 0; //Max rows 5; (5 + 1)
     let tileIndex = 0;
-
     let lines = Array.prototype.slice.call(rows[rowIndex].children);
+    let isGameEnded = false;
+
     this.window.addEventListener("keydown", function (e) {
         //Zameniti sa regexom (Pogledati regex generator....)
-        if (e.keyCode >= 65 && e.keyCode <= 90) {
+        if (e.keyCode >= 65 && e.keyCode <= 90 || e.key.match(/[ŠšĐđŽžČčĆć]/u)) {
+            // if () {
             const key = e.key;
 
             if (tileIndex <= 4) {
@@ -36,15 +43,16 @@ function startGame() {
             tileIndex = Math.min(tileIndex + 1, 5);
         }
 
-        if (e.key === "Backspace") {
+        if (e.key === "Backspace" && !isGameEnded) {
             tileIndex = Math.max(tileIndex - 1, 0);
             lines[tileIndex].innerText = "";
         }
 
         if (e.key === "Enter") {
             let isCompleteWord = lines.every(tile => tile.innerText !== ""); //Da li su sva polja popunjena
-            if (isCompleteWord === true) {
-                const word = getWord(rows[rowIndex]);
+            const word = getWord(rows[rowIndex]);
+
+            if (isCompleteWord === true && dictionary.includes(word)) {
 
                 for (let i = 0; i < word.length; i++) {
                     const playerLetter = word[i];
@@ -62,11 +70,12 @@ function startGame() {
                         lines[i].classList.add("bg-yellow");
                     }
                 }
-
                 if (rowIndex === 5) {
+                    isGameEnded = true;
                     return showEndGame(false, currentWord);
                 }
                 else if (currentWord.toLowerCase() === word.toLowerCase()) {
+                    isGameEnded = true;
                     return showEndGame(true, currentWord)
                 }
 
@@ -74,8 +83,26 @@ function startGame() {
                 tileIndex = 0;
                 lines = Array.prototype.slice.call(rows[rowIndex].children); //Slice se ponavlja
             }
+            else {
+                wiggle(lines);
+            }
         }
     })
+}
+function wiggle(lines) {
+    console.log("Vasa rijec se ne nalazi u nasem rijecniku. Moguce da postoji vasa, ali je kod nas nema");
+    lines.forEach(tile => {
+        tile.classList.add("wiggle");
+        setTimeout(() => tile.classList.remove("wiggle"), 1000);
+    })
+}
+function readTextFile(file) {
+    fetch(file).then(res => res.text()).then(data => showFiveWords(data));
+}
+function showFiveWords(dictionary) {
+    let allText = dictionary.split("\r\n");
+    const fiveWords = allText.filter(words => words.length === 5); //Prikazujem samo reci od 5 slova
+    return fiveWords;
 }
 /**
  * let mixedCharacters = "aεЛ";
